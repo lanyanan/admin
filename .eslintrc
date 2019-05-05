@@ -1,0 +1,67 @@
+{
+  "env": {
+    "browser": true
+  },
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "rules": {
+    "generator-star-spacing": [0],
+    "consistent-return": [0],
+    "react/forbid-prop-types": [0],
+    "react/jsx-filename-extension": [1, {
+      "extensions": [".js"]
+    }],
+    "global-require": [1],
+    "import/prefer-default-export": [0],
+    "react/jsx-no-bind": [0],
+    "react/prop-types": [0],
+    "react/prefer-stateless-function": [0],
+    "react/no-danger": [0],
+    "no-else-return": [0],
+    "no-restricted-syntax": [0],
+    "import/no-extraneous-dependencies": [0],
+    "no-use-before-define": [0],
+    "jsx-a11y/no-static-element-interactions": [0],
+    "jsx-a11y/no-noninteractive-element-interactions": [0],
+    "no-nested-ternary": [0],
+    "arrow-body-style": [0],
+    "import/extensions": [0],
+    "no-bitwise": [0],
+    "no-cond-assign": [0],
+    "import/no-unresolved": [0],
+    "require-yield": [1],
+    "linebreak-style": ["error", "unix"],
+    "object-shorthand": ["error", "always"],
+    "array-bracket-spacing": ["error", "never"],
+    "object-curly-spacing": ["error", "always"],
+    "no-underscore-dangle": ["error", {"allow": ["_this"]}],
+    "no-console": ["error", {"allow": ["log", "warn", "error"]}],
+    "prefer-destructuring": ["error", {"object": true}],
+    "jsx-a11y/anchor-is-valid": ["error",
+      {
+        "components": ["Link"],
+        "specialLink": ["to"],
+        "aspects": ["noHref", "invalidHref", "preferButton"]
+      }
+    ],
+    "no-unused-expressions": [2, { "allowTernary": true }],
+    "jsx-a11y/click-events-have-key-events": 0,
+    "react/sort-comp": 0,
+    "array-callback-return": ["error", { "allowImplicit": false }],
+    "prefer-arrow-callback": 0,
+    "react/jsx-closing-bracket-location": 0,
+    "react/jsx-closing-tag-location": 0,
+    "no-return-assign": 0,
+    "max-len": 0,
+    "react/no-array-index-key": 0,
+    "class-methods-use-this": 0,
+    "jsx-a11y/media-has-caption": 0,
+    "jsx-a11y/label-has-for": 0,
+    "react/jsx-no-target-blank": 0
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
+  }
+}
