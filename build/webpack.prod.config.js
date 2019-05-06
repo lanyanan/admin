@@ -19,18 +19,16 @@ const entryfile = './src/js/route.js';
 //   }),
 // );
 
-common.plugins.push(
-  new OptimizeCSSAssetsPlugin({
-    assetNameRegExp: /\.css\.*(?!.*map)/g,
-    cssProcessor: require('cssnano'),
-    cssProcessorOptions: {
-      discardComments: { removeAll: true },
-      safe: true,
-      autoprefixer: false,
-    },
-    canPrint: true,
-  }),
-);
+common.plugins.push(new OptimizeCSSAssetsPlugin({
+  assetNameRegExp: /\.css\.*(?!.*map)/g,
+  cssProcessor: require('cssnano'),
+  cssProcessorOptions: {
+    discardComments: { removeAll: true },
+    safe: true,
+    autoprefixer: false,
+  },
+  canPrint: true,
+}));
 
 
 const prod = {

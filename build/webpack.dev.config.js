@@ -26,19 +26,17 @@ common.plugins.push(new webpack.HotModuleReplacementPlugin());
 //     console.log(err);
 //   }),
 // );
-common.module.rules.unshift(
-  {
-    enforce: 'pre',
-    test: /\.js$/,
-    loader: 'eslint-loader',
-    include: path.resolve(process.cwd(), 'src'),
-    exclude: /node_modules/,
-    options: {
-      fix: true,
-      formatter: require('eslint-friendly-formatter'), // 指定错误报告的格式规范
-    },
+common.module.rules.unshift({
+  enforce: 'pre',
+  test: /\.js$/,
+  loader: 'eslint-loader',
+  include: path.resolve(process.cwd(), 'src'),
+  exclude: /node_modules/,
+  options: {
+    fix: true,
+    formatter: require('eslint-friendly-formatter'), // 指定错误报告的格式规范
   },
-);
+});
 
 const dev = {
   mode: 'development',

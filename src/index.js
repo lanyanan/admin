@@ -1,4 +1,4 @@
-import '@babel/polyfill';
+// import '@babel/polyfill';
 import dva from 'dva';
 // import createBrowserHistory from 'history/createBrowserHistory';
 // import authModel from 'models/auth';
@@ -7,7 +7,7 @@ import dva from 'dva';
 // import { BROWSER_HISTORY } from 'constants';
 import 'antd/dist/antd.css';
 // import './assets/libs/pilyfill';
-import router from './router';
+// import router from './router';
 
 import './index.less';
 
@@ -34,7 +34,7 @@ const app = dva(appOptions);
 // app.model(attachmentModel);
 
 // 4. Router
-app.router(router);
+// app.router(router);
 
 // 5. Start
 app.start('#root');
