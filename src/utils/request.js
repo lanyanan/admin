@@ -1,7 +1,7 @@
 import fetch from 'dva/fetch';
 import { message } from 'antd';
-import { HEADER_TOKEN_NAME, BROWSER_HISTORY, ERP_VERSION, HEADER_VERSION_NAME, HEADER_PROJECT_NAME, FINANCE_VERSION } from 'constants';
-import { getToken, getProjectId } from './session';
+// import { HEADER_TOKEN_NAME, BROWSER_HISTORY, ERP_VERSION, HEADER_VERSION_NAME, HEADER_PROJECT_NAME, FINANCE_VERSION } from 'constants';
+// import { getToken, getProjectId } from './session';
 
 // const getCenterOrigin = () => {
 //   const auth = getUserSession();
@@ -39,16 +39,16 @@ function checkStatus(response) {
  * @return {object}           An object containing either "data" or "err"
  */
 export default function request(url, options) {
-  const token = getToken();
-  const projectId = getProjectId();
+  // const token = getToken();
+  // const projectId = getProjectId();
   // 配置默认headers
   const versionHeader = {};
-  if (/api\/erp\//.test(url)) {
-    versionHeader[HEADER_VERSION_NAME] = ERP_VERSION;
-  }
-  if (/api\/finance\//.test(url)) {
-    versionHeader[HEADER_VERSION_NAME] = FINANCE_VERSION;
-  }
+  // if (/api\/erp\//.test(url)) {
+  //   versionHeader[HEADER_VERSION_NAME] = ERP_VERSION;
+  // }
+  // if (/api\/finance\//.test(url)) {
+  //   versionHeader[HEADER_VERSION_NAME] = FINANCE_VERSION;
+  // }
   const headers = Object.assign({
     'Content-Type': 'application/json;charset=UTF-8',
     ...versionHeader,
@@ -56,12 +56,12 @@ export default function request(url, options) {
   if (options && options.body && (options.body instanceof FormData)) {
     delete headers['Content-Type'];
   }
-  if (token) {
-    headers[HEADER_TOKEN_NAME] = token;
-  }
-  if (projectId) {
-    headers[HEADER_PROJECT_NAME] = projectId;
-  }
+  // if (token) {
+  //   headers[HEADER_TOKEN_NAME] = token;
+  // }
+  // if (projectId) {
+  //   headers[HEADER_PROJECT_NAME] = projectId;
+  // }
   headers['Cache-Control'] = 'no-cache';
   headers.Pragma = 'no-cache';
   // 配置默认设置
@@ -83,12 +83,12 @@ export default function request(url, options) {
     .then((data) => {
       if (data.code === 1 && !expireValveOn) { // 会话已失效
         expireValveOn = true;
-        if (BROWSER_HISTORY) {
-          window.location.href = '/logout';
-        } else {
-          // logout();
-          window.location.hash = '#/logout';
-        }
+        // if (BROWSER_HISTORY) {
+        //   window.location.href = '/logout';
+        // } else {
+        //   // logout();
+        //   window.location.hash = '#/logout';
+        // }
         setTimeout(() => (expireValveOn = false), expireValveDuration);
       }
       if (data.code === 3) { // 操作受限

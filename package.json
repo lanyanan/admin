@@ -8,7 +8,7 @@
     "start": "node build/ready && webpack-dev-server --open --config build/webpack.dev.config.js",
     "watch": "webpack --watch",
     "build": "webpack --config build/webpack.prod.config.js --profile --colors",
-    "lint": "eslint --fix --ext .js src",
+    "lint": "eslint --format node_modules/eslint-friendly-formatter src/",
     "dll": "webpack --config build/dll.config.js"
   },
   "directories": {
