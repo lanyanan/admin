@@ -8,8 +8,7 @@ const rootPath = path.resolve(__dirname, '../');
 const staticInput = path.resolve(rootPath, 'public');
 const staticOutput = path.resolve(rootPath, 'dist');
 
-// 我在webpack里面配置了clear dist
-// fs.emptyDirSync(staticOutput); // clean cache
+fs.emptyDirSync(staticOutput);
 fs.ensureDirSync(staticInput);
 fs.ensureDirSync(staticOutput);
 

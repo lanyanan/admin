@@ -4,6 +4,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 
 const timestamp = new Date().getTime();
+
+const dlljson = require('../dll/dll-manifest.json');
+
 // const devMode = process.env.NODE_ENV !== 'production';
 
 // const EndWebpackPlugin = require('watch-lint-webpack-plugin');
@@ -93,7 +96,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       version: timestamp,
-      template: './index.html',
+      template: './public/index.html',
     }),
     new MiniCssExtractPlugin({
       filename: 'css/[name]-[contenthash:8].css',
@@ -101,7 +104,7 @@ module.exports = {
     }),
     new webpack.DllReferencePlugin({
       context: __dirname,
-      manifest: require('../dll-manifest.json'),
+      manifest: dlljson,
     }),
   ],
   performance: {

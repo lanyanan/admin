@@ -1,13 +1,13 @@
 // import '@babel/polyfill';
 import dva from 'dva';
-// import createBrowserHistory from 'history/createBrowserHistory';
+import createBrowserHistory from 'history/createBrowserHistory';
 // import authModel from 'models/auth';
 // import systemModel from 'models/system';
 // import attachmentModel from 'models/attachmentdel';
 // import { BROWSER_HISTORY } from 'constants';
 import 'antd/dist/antd.css';
 // import './assets/libs/pilyfill';
-// import router from './router';
+import router from './router';
 
 import './index.less';
 
@@ -17,8 +17,10 @@ const appOptions = {
   },
 };
 
+appOptions.history = createBrowserHistory();
 
-// if (BROWSER_HISTORY) {
+
+// if (true) {
 //   appOptions.history = createBrowserHistory();
 // }
 
@@ -34,7 +36,7 @@ const app = dva(appOptions);
 // app.model(attachmentModel);
 
 // 4. Router
-// app.router(router);
+app.router(router);
 
 // 5. Start
 app.start('#root');
