@@ -1,7 +1,7 @@
 // import '@babel/polyfill';
 import dva from 'dva';
 import createBrowserHistory from 'history/createBrowserHistory';
-// import authModel from 'models/auth';
+import global from 'models/global';
 // import systemModel from 'models/system';
 // import attachmentModel from 'models/attachmentdel';
 // import { BROWSER_HISTORY } from 'constants';
@@ -31,7 +31,7 @@ const app = dva(appOptions);
 // app.use({});
 
 // 3. Model
-// app.model(authModel);
+app.model(global);
 // app.model(systemModel);
 // app.model(attachmentModel);
 

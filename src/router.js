@@ -1,17 +1,14 @@
 /* eslint no-underscore-dangle: ["error", { "allow": ["_store"] }] */
 import React from 'react';
 // import Loadable from 'react-loadable';
-import {
-  Router, Route, Switch,
-  // Redirect
-} from 'dva/router';
+import { Router, Route, Switch, Redirect } from 'dva/router';
 import { LocaleProvider } from 'antd';
-// import Page404 from 'routes/404';
+import Page404 from 'pages/Page404';
 // import Auth from 'routes/Auth/Auth';
 import Login from 'pages/Auth/Login';
-// import Logout from 'routes/Auth/Logout';
+import Logout from 'pages/Auth/Logout';
 // import Reset from 'routes/Auth/Transit';
-// import CommonLayout from 'components/CommonLayout';
+import BasicLayout from 'layouts/BasicLayout';
 // import Loading from 'components/Loading';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
 // import { routeGrantor } from 'utils/routeGrantor';
@@ -135,6 +132,10 @@ function RouterConfig({
     <LocaleProvider locale={zhCN}>
       <Switch>
         <Route path="/login" component={Login} />
+        <Route path="/logout" component={Logout} />
+        <Route path="/404" component={Page404} />
+        <BasicLayout />
+        <Redirect to={{ pathname: '/404' }} />
         {/* <Route path="/home" component={Home} />
         <Route path="/logout" component={Logout} />
         <Route path="/auth" component={Auth} />
