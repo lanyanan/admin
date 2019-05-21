@@ -15,10 +15,10 @@ import {
   Select,
 } from 'antd';
 
-import PageHeaderWrapper from '@/components/PageHeaderWrapper';
-import Result from '@/components/Result';
+// import PageHeaderWrapper from 'components/PageHeaderWrapper';
+// import Result from 'components/Result';
 
-import styles from './BasicList.less';
+import styles from '../less/index.less';
 
 const FormItem = Form.Item;
 const RadioButton = Radio.Button;
@@ -136,21 +136,6 @@ class BasicList extends PureComponent {
 
 
     const getModalContent = () => {
-      if (done) {
-        return (
-          <Result
-            type="success"
-            title="操作成功"
-            description="一系列的信息描述，很短同样也可以带标点。"
-            actions={
-              <Button type="primary" onClick={this.handleDone}>
-                知道了
-              </Button>
-            }
-            className={styles.formResult}
-          />
-        );
-      }
       return (
         <Form onSubmit={this.handleSubmit}>
           <FormItem label="任务名称" {...this.formLayout}>
@@ -189,7 +174,7 @@ class BasicList extends PureComponent {
       );
     };
     return (
-      <PageHeaderWrapper>
+      <section>
         <div className={styles.standardList}>
           <Card bordered={false}>
             <Row>
@@ -239,9 +224,9 @@ class BasicList extends PureComponent {
         >
           {getModalContent()}
         </Modal>
-      </PageHeaderWrapper>
+      </section>
     );
   }
 }
 
-export default BasicList;
+export default connect()(Form.create()(BasicList));

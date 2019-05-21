@@ -14,7 +14,7 @@ import Footer from './Footer';
 // import Header from './Header';
 import Context from './MenuContext';
 
-import styles from './BasicLayout.less';
+import styles from './layout.less';
 
 // lazy load SettingDrawer
 // const SettingDrawer = React.lazy(() => import('components/SettingDrawer'));
@@ -169,7 +169,5 @@ export default connect(({
 }) => ({
   collapsed: global.collapsed,
 }))(props => (
-  <div>
-    {isMobile => <BasicLayout {...props} isMobile={isMobile} />}
-  </div>
+  <BasicLayout {...props} />
 ));
