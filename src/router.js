@@ -11,7 +11,7 @@ import Logout from 'pages/Auth/Logout';
 import BasicLayout from 'layouts/BasicLayout';
 // import Loading from 'components/Loading';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
-import { routeGrantor } from 'utils/routeGrantor';
+// import { routeGrantor } from 'utils/routeGrantor';
 // import Home from './routes/Home';
 
 const loadedModels = new Set();

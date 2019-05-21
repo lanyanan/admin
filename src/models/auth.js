@@ -1,3 +1,4 @@
+/** eslint-disabled */
 import { getLogin } from '../services/login';
 import { setToken } from '../utils/tool';
 
@@ -10,16 +11,19 @@ export default {
   },
 
   subscriptions: {
+    // eslint-disable-next-line no-unused-vars
     setup({ dispatch, history }) {
       // eslint-disable-line
     },
   },
 
   effects: {
+    // eslint-disable-next-line no-unused-vars
     *fetch({ payload }, { call, put }) {
       // eslint-disable-line
       yield put({ type: 'save' });
     },
+    // eslint-disable-next-line no-unused-vars
     *getLogin({ payload }, { call, put }) {
       const { data } = yield getLogin(payload);
       if (data.code === 0) {
@@ -34,6 +38,7 @@ export default {
         });
       }
     },
+    // eslint-disable-next-line no-unused-vars
     *loginOut({ payload, history }, { call, put }) {
       yield put({
         type: 'save',

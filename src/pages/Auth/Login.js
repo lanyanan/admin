@@ -8,7 +8,8 @@ const FormItem = Form.Item;
 
 class App extends React.PureComponent {
   handleSubmit = (e) => {
-    const { dispatch } = this.props;
+    // eslint-disable-next-line no-unused-vars
+    // const { dispatch } = this.props;
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
