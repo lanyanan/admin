@@ -11,7 +11,7 @@ import Logout from 'pages/Auth/Logout';
 import BasicLayout from 'layouts/BasicLayout';
 // import Loading from 'components/Loading';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
-// import { routeGrantor } from 'utils/routeGrantor';
+import { routeGrantor } from 'utils/routeGrantor';
 // import Home from './routes/Home';
 
 const loadedModels = new Set();
@@ -64,7 +64,7 @@ const loadModel = async (asynModel, app) => {
 const loadableCommon = (route, routeStack, app) => {
   return Loadable({
     loader: async () => {
-      // if (!routeGrantor(route, app)) return null;
+      if (!routeGrantor(route, app)) return null;
       app._store.dispatch({
         type: 'system/updatePageLoading',
         payload: true,
@@ -132,13 +132,14 @@ function RouterConfig({
 }) {
   const routeFiles = require.context('./pages', true, /route\.js$/);
   const routes = getRoutesByFiles(routeFiles, app);
-  // console.log(routes);
+  console.log(routes);
   return (<Router history={history}>
     <LocaleProvider locale={zhCN}>
       <Switch>
         <Route path="/login" component={Login} />
         <Route path="/logout" component={Logout} />
         <Route path="/404" component={Page404} />
+        <Redirect path="/" exact to={{ pathname: '/login' }} />
         <BasicLayout >
           <Switch>
             {routes.map((route, i) => createRoute(route, i))}

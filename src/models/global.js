@@ -87,6 +87,7 @@ export default {
   subscriptions: {
     setup({ history, dispatch }) {
       return history.listen(({ pathname, search }) => {
+        console.log(8989);
         const query = parseSearch(search);
         dispatch({
           type: 'save',

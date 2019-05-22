@@ -7,6 +7,6 @@ export default [
     path: '/list/index',
     component: List,
     models: ListModal,
-    // permmit: 'system.list.list',
+    permit: 'system.list.list',
   },
 ];

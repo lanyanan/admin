@@ -2,6 +2,7 @@
 import dva from 'dva';
 import createBrowserHistory from 'history/createBrowserHistory';
 import global from 'models/global';
+import auth from 'models/auth';
 // import systemModel from 'models/system';
 // import attachmentModel from 'models/attachmentdel';
 // import { BROWSER_HISTORY } from 'constants';
@@ -32,6 +33,7 @@ const app = dva(appOptions);
 
 // 3. Model
 app.model(global);
+app.model(auth);
 // app.model(systemModel);
 // app.model(attachmentModel);
 

@@ -7,18 +7,26 @@ const FormItem = Form.Item;
 
 
 class App extends React.PureComponent {
+  static getDerivedStateFromProps(nextProps) {
+    const { authorized } = nextProps.auth;
+    if (authorized) {
+      nextProps.history.replace('/list/index');
+    }
+    return nextProps;
+  }
+
   handleSubmit = (e) => {
     // eslint-disable-next-line no-unused-vars
-    // const { dispatch } = this.props;
+    const { dispatch } = this.props;
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
       }
-      // dispatch({
-      //   type: 'auth/getLogin',
-      //   payload: values,
-      // });
+      dispatch({
+        type: 'auth/getLogin',
+        payload: values,
+      });
     });
   };
   render() {

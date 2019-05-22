@@ -1,19 +1,31 @@
 /** eslint-disabled */
-import { getLogin } from '../services/login';
-import { setToken } from '../utils/tool';
+import {
+// getLogin
+} from 'services/auth/login';
+import {
+  saveUserSession,
+  getUserSession,
+  // removeUserSession
+} from 'utils/session';
+// import Immutable from 'immutable';
+// import { convertJsonToKeys } from 'utils/permissionTree';
+import { setToken } from 'utils/tools';
 
 export default {
   namespace: 'auth',
 
   state: {
-    loginState: false,
-    permit: [],
+    authorized: false,
+    permit: ['system.list.list'],
+    permissions: ['system.list.list'],
   },
 
   subscriptions: {
     // eslint-disable-next-line no-unused-vars
-    setup({ dispatch, history }) {
-      // eslint-disable-line
+    setup({ history, dispatch }) {
+      return history.listen(() => {
+        dispatch({ type: 'getSession' });
+      });
     },
   },
 
@@ -25,15 +37,36 @@ export default {
     },
     // eslint-disable-next-line no-unused-vars
     *getLogin({ payload }, { call, put }) {
-      const { data } = yield getLogin(payload);
-      if (data.code === 0) {
-        setToken(data.data.token);
+      yield put({
+        type: 'saveLoginInfo',
+        payload: {
+          authorized: true,
+        },
+      });
+      // const { data } = yield getLogin(payload);
+      // if (data.code === 0) {
+      //   setToken(data.data.token);
+      //   yield put({
+      //     type: 'save',
+      //     payload: {
+      //       authorized: true,
+      //       token: data.data.token,
+      //       permit: data.data.permit,
+      //     },
+      //   });
+      // }
+    },
+    *getSession(_, { put, select }) {
+      const info = yield select(state => state.auth);
+      if (info.authorized) return;
+      const session = getUserSession();
+      if (session && session.authorized) {
         yield put({
           type: 'save',
           payload: {
-            loginState: true,
-            token: data.data.token,
-            permit: data.data.permit,
+            ...session,
+            loginStatus: 'success',
+            authorized: true,
           },
         });
       }
@@ -52,6 +85,15 @@ export default {
   reducers: {
     save(state, action) {
       return { ...state, ...action.payload };
+    },
+    saveLoginInfo(state, { payload }) {
+      // const permissions = convertJsonToKeys((payload.auth_menus) ? payload.auth_menus : []);
+      const newState = {
+        ...payload,
+        // permissions,
+      };
+      saveUserSession(newState);
+      return { ...newState };
     },
   },
 };

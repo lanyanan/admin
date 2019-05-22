@@ -8,16 +8,17 @@ import { message } from 'antd';
  */
 export const routeGrantor = (route, app) => {
   const { auth } = app._store.getState();
-  if (!auth.get('authorized')) { // 如果未登录，则引导登录
+  console.log(route);
+  if (!auth.authorized) { // 如果未登录，则引导登录
     app._history.push('/login');
     return false;
   }
   if (route.permit) {
-    console.log(route.permit);
-    const permits = auth.get('permissions').toJS();
+    const permits = auth.permissions;
+    console.log(permits, (!permits.some(it => it === route.permit)));
     if (!permits.some(it => it === route.permit)) {
       message.error('无权访问', 3, () => {
-        // app._history.replace('/');
+        app._history.replace('/');
       });
       return false;
     }

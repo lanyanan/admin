@@ -14,6 +14,8 @@ import {
   DatePicker,
   Select,
 } from 'antd';
+import { withRouter } from 'dva/router';
+
 
 // import PageHeaderWrapper from 'components/PageHeaderWrapper';
 // import Result from 'components/Result';
@@ -26,11 +28,6 @@ const RadioGroup = Radio.Group;
 const SelectOption = Select.Option;
 const { Search, TextArea } = Input;
 
-@connect(({ list, loading }) => ({
-  list,
-  loading: loading.models.list,
-}))
-@Form.create()
 class BasicList extends PureComponent {
   state = { visible: false, done: false };
 
@@ -229,4 +226,4 @@ class BasicList extends PureComponent {
   }
 }
 
-export default connect()(Form.create()(BasicList));
+export default withRouter(connect()(Form.create()(BasicList)));

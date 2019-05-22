@@ -6,6 +6,7 @@ import DocumentTitle from 'react-document-title';
 import { connect } from 'dva';
 import { ContainerQuery } from 'react-container-query';
 import classNames from 'classnames';
+import { withRouter } from 'dva/router';
 // import Media from 'react-media';
 // import SiderMenu from 'components/SiderMenu';
 // import getPageTitle from 'utils/getPageTitle';
@@ -116,7 +117,7 @@ class BasicLayout extends React.Component {
       // breadcrumbNameMap,
       fixedHeader,
     } = this.props;
-
+    console.log(children);
     const isTop = PropsLayout === 'topmenu';
     const contentStyle = !fixedHeader ? { paddingTop: 0 } : {};
     const layout = (
@@ -164,10 +165,11 @@ class BasicLayout extends React.Component {
   }
 }
 
-export default connect(({
-  global,
+export default withRouter(connect(({
+  global, auth,
 }) => ({
   collapsed: global.collapsed,
+  auth,
 }))(props => (
   <BasicLayout {...props} />
-));
+)));
